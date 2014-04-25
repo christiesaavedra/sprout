@@ -45,6 +45,8 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=50)
     glycemic_index = models.IntegerField()
 
+    def __unicode__(self):
+        return self.name
 
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
@@ -64,3 +66,9 @@ class Recipe(models.Model):
         return self.name
 
 
+# class Measurement(models.Model):
+#     name = models.CharField(max_length=50)
+#     amount = models.CharField(max_length=50)
+#
+#     def __unicode__(self):
+#         return self.name
