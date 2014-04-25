@@ -10,9 +10,9 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username')
 
 
-class ItemSerializer(serializers.ModelSerializer):
+class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Item
+        model = Recipe
 
 
 # class AddressSerializer(serializers.ModelSerializer):

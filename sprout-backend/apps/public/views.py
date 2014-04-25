@@ -17,18 +17,18 @@ from .models import *
 from .serializers import *
 
 
-class ItemList(generics.ListCreateAPIView):
+class RecipeList(generics.ListCreateAPIView):
     # permission_classes = (permissions.IsAuthenticated,)
-    model = Item
-    serializer_class = ItemSerializer
-    queryset = Item.objects.all()
+    model = Recipe
+    serializer_class = RecipeSerializer
+    queryset = Recipe.objects.all()
 
 
-class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
+class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = (permissions.IsAuthenticated,)
-    model = Item
-    serializer_class = ItemSerializer
-    queryset = Item.objects.all()
+    model = Recipe
+    serializer_class = RecipeSerializer
+    queryset = Recipe.objects.all()
 # Create your views here.
 
 class UserList(generics.ListCreateAPIView):

@@ -41,64 +41,26 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 #     class Meta:
 #         verbose_name_plural = 'Addresses'
 
-
-class Item(models.Model):
-    part_no = models.CharField(max_length=50)
+class Ingredient(models.Model):
     name = models.CharField(max_length=50)
+    glycemic_index = models.IntegerField()
+
+
+class Recipe(models.Model):
+    name = models.CharField(max_length=50)
+    ingredients = models.ManyToManyField('Ingredient')
+    cook_time = models.CharField(max_length=50)
+    description = models.CharField(max_length=2000)
+    COOK_METHODS = (
+        ('bake', 'Bake in the Oven'),
+        ('microwave', 'Microwave'),
+        ('fry', 'Frying Pan'),
+        ('dutch_oven', 'Dutch Oven'),
+    )
+    cook_method = models.CharField(max_length=50, choices=COOK_METHODS)
+
 
     def __unicode__(self):
-        return "Name: " + self.name + ", part number: " + self.part_no
+        return self.name
 
 
-class Template(models.Model):
-    part_no = models.CharField(max_length=50)
-    item_id = models.IntegerField()
-    attribute1 = models.CharField(max_length=50)
-    attribute2 = models.CharField(max_length=50)
-
-
-class Color(models.Model):
-    name = models.CharField(max_length=50)
-
-
-class Material(models.Model):
-    name = models.CharField(max_length=50)
-
-
-class Revision(models.Model):
-    pass
-
-
-class Supplier(models.Model):
-    code = models.CharField(max_length=10)
-    name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=100)
-    address = models.TextField()
-    material = models.ForeignKey("Material") # Logs what material this supplier is responsible for.
-
-
-class ItemType(models.Model):
-    name = models.CharField(max_length=50)
-    is_template = models.BooleanField()
-    is_recoup = models.BooleanField()
-    is_inventory = models.BooleanField()
-    abb = models.CharField(max_length=50)
-    # qb_parent_account = models.CharField(max_length=50)
-    # qb_cogs_account =
-    # qb_asset_account =
-    # qb_sales_account =
-    # qb_track_qty =
-    # qb_force_val =
-    # exp_to_qb =
-    # timestamp = models.? #==== What is this for? TimeField or DateTimeField?====#
-    is_non_inventory_item = models.BooleanField()
-
-class AttributeType(models.Model):
-    name = models.CharField(max_length=50)
-
-    #Color: blue
-    #Color: white
-    #Color: gray
-    #Material: leather
-    #Thickness: really really thick
-    #Print: True
