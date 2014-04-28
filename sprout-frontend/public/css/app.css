@@ -1,8 +1,28 @@
 /* app css stylesheet */
 body {
     padding-top: 50px;
+    background-image: url('../img/purty_wood.png');
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+    background-image: url('../img/lined_paper.png');
+    box-shadow: 0 1px 15px rgba(34,25,25,0.7);
+    -moz-box-shadow: 0 1px 15px rgba(34,25,25,0.7);
+    -webkit-box-shadow: 0 1px 15px rgba(34,25,25,0.7);
+}
+
+.spacersmall-bottom {
     padding-bottom: 20px;
 }
+
+.spacersmall-top {
+    padding-top: 20px;
+}
+
+.white-background {
+    background-color: floralwhite;
 
 .btn-primary {
     background-color: #222222;
@@ -63,4 +83,19 @@ body {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.block {
+display: inline-block;
+background: #FEFEFE;
+border: 2px solid #FAFAFA;
+box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+margin: 0 10px 15px ;
+}
+
+
+.block-info {
+    background-color: #e6e6e6;
+    padding: 15px;
+    width: 100%;
 }

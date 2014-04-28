@@ -1,15 +1,22 @@
 <input type="text" data-ng-model="search">
 <a class="btn btn-info btn btn-xs" href="#/add-recipe">Add Recipe</a>
+<br/>
+<br/>
+<br/>
+<br/>
 
-
-<div ng-repeat="recipe in recipes | filter:search">
+<div class="block" ng-repeat="recipe in recipes | filter:search">
      <p>
          <a href="#/recipe-details/{{ recipe.id }}">{{ recipe.name }}</a>
          <a class="btn btn-info btn btn-xs" href="#/edit-recipe/{{ recipe.id }}">EDIT</a>
      </p>
 
-
-
+    <div class="block-info">
      <p>Cook Time: {{ recipe.cook_time }}</p>
+        <br/>
+        <br/>
      <p>Description: {{ recipe.description }}</p>
+        <br/>
+        <br/>
+    </div>
 </div>

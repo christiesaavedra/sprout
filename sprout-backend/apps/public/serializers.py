@@ -13,9 +13,13 @@ class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
 
-class RecipeSerializer(serializers.ModelSerializer):
+class NestedRecipeSerializer(serializers.ModelSerializer):
     ingredients = IngredientSerializer(many=True)
 
+    class Meta:
+        model = Recipe
+
+class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
 

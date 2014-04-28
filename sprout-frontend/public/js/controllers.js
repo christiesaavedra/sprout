@@ -75,13 +75,14 @@ angular.module('sproutApp.controllers', [])
         Restangular.one('recipes', $scope.recipeId).customGET().then(function(data)  {
             $scope.recipe = data;
 
+            //for each ingredient in recipe,
+            //make a restangular call for that ingredient
+
         })
     })
 
-  .controller('AddRecipeController', function($scope, SessionService, Restangular) {
-        $scope.session = SessionService.getSession();
-
-        $scope.recipe = {};
+ .controller('AddRecipeController', function($scope, SessionService, Restangular) {
+        $scope.recipe = { ingredients: [] };
         $scope.status = null;
         $scope.methods = [
             { printed_name: 'Bake', stored_name: 'bake' },
@@ -89,12 +90,64 @@ angular.module('sproutApp.controllers', [])
             { printed_name: 'Fry', stored_name: 'fry' },
             { printed_name: 'Dutch Oven', stored_name: 'dutch_oven' }];
 
+        Restangular.all('ingredients').getList().then(function(ingredients) {
+            $scope.ingredients = ingredients
+
+            for (var ingredientIndex in $scope.ingredients) {
+                $scope.ingredients[ingredientIndex].active = true;
+            }
+        });
+
+        $scope.saveNewRecipe = function() {
+            Restangular.all('create-recipe').customPOST($scope.recipe).then(function() {
+                $scope.status = "The recipe was successfully created!";
+                $scope.recipe = { ingredients: [] };
+            }, function() {
+                $scope.status = "The recipe couldn't be saved";
+            });
+        };
+
+        $scope.addIngredient = function(ingredientId) {
+            if ($scope.recipe.ingredients.indexOf(ingredientId) == -1) {
+                $scope.recipe.ingredients.push(ingredientId);
+
+                for (var ingredientIndex in $scope.ingredients) {
+                    var ingredient = $scope.ingredients[ingredientIndex];
+                    if (ingredient.id == ingredientId) {
+                        $scope.ingredients[ingredientIndex].active = false;
+                    }
+                }
+
+            }
+        }
+//adding remove ingredient function
+        $scope.removeIngredient = function(ingredientId) {
+            var index = $scope.recipe.ingredients.indexOf(ingredientId);
+            $scope.recipe.ingredients.splice(index, 1);
+
+            for (var ingredientIndex in $scope.ingredients) {
+                var ingredient = $scope.ingredients[ingredientIndex];
+                if (ingredient.id == ingredientId) {
+                    $scope.ingredients[ingredientIndex].active = true;
+                }
+            }
+        }
+
+        $scope.getIngredientName = function(ingredientId) {
+            for (var ingredientIndex in $scope.ingredients) {
+                var ingredient = $scope.ingredients[ingredientIndex];
+                if (ingredient.id == ingredientId) {
+                    return ingredient.name;
+                }
+            }
+        }
+
         $scope.saveNewRecipe = function(){
-            Restangular.all('recipes').customPOST($scope.recipe).then(function(){
+            Restangular.all('create-recipe').customPOST($scope.recipe).then(function(){
                 $scope.status = 'The recipe was successfully created!';
                 $scope.recipe = {};
             }, function(){
-                $scope.status = "The recipe couldn't be saved";
+                $scope.status = "Sorry, the recipe couldn't be saved";
         })
        }
     })

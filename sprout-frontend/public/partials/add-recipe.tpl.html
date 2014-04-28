@@ -1,26 +1,68 @@
+<div class="text-center">
 
 <label> Recipe Name</label>
 <input type="text" ng-model="recipe.name">
+<br>
+<br>
+<label> Author</label>
+<input type="text" ng-model="recipe.author">
+<br>
+<br>
+<label> Recipe Description</label>
+<input type="text" ng-model="recipe.description">
+
 <br>
 <br>
 <label> Recipe Cook-Time</label>
 <input type="text" ng-model="recipe.cook_time">
 <br>
 <br>
-<label> Recipe Description</label>
-<input type="text" ng-model="recipe.description">
-<br>
-<br>
+
 <label> Recipe Cook-Method</label>
 <select ng-model="recipe.cook_method"
         ng-options="method.stored_name as method.printed_name for method in methods">
 </select>
+
 <br>
 <br>
+
+    <input type="text" ng-model="searchIngredient.name">
+    <p ng-repeat="ingredient in ingredients | filter:searchIngredient">
+        <a href="javascript:void(0);"
+           ng-click="addIngredient(ingredient.id)"
+           ng-bind="ingredient.name"
+           ng-hide="!ingredient.active"></a>
+    </p>
+<!-- <p>
+     <span class="glyphicon glyphicon-remove"></span>
+     <span class="glyphicon-class">glyphicon glyphicon-remove</span>
+</p>
+    <input type="text" ng-model="searchIngredient.name">
+    <p ng-repeat="ingredient in ingredients | filter:searchIngredient">
+        <a href="javascript:void(0);"
+           ng-click="addIngredient(ingredient.id)"
+           ng-bind="ingredient.name"
+           ng-show="ingredient.active"></a>
+    </p> -->
+
+
+    <h3>Ingredients List:</h3>
+ <ol>
+        <li ng-repeat="ingredientId in recipe.ingredients">
+            <span ng-bind="getIngredientName(ingredientId)"></span>
+            <button class="btn btn-xs btn-danger glyphicon glyphicon-remove"
+                    ng-click="removeIngredient(ingredientId)"></button>
+        </li>
+ </ol>
+
+  </div>
+</div>
+<br/>
+<br/>
 <button ng-click="saveNewRecipe()"> Add Recipe</button>
 <br>
 <br>
-{{recipe}}
+{{ recipe }}
 <br>
 <br>
-<p>{{status}}</p>
+<p>{{ status }}</p>

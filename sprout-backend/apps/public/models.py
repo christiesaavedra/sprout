@@ -50,9 +50,12 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
+#    author = models.CharField(max_length=50)
+    description = models.CharField(max_length=2000)
+#   image =
     ingredients = models.ManyToManyField('Ingredient')
     cook_time = models.CharField(max_length=50)
-    description = models.CharField(max_length=2000)
+
     COOK_METHODS = (
         ('bake', 'Bake in the Oven'),
         ('microwave', 'Microwave'),
