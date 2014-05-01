@@ -23,6 +23,18 @@ class RecipeList(generics.ListCreateAPIView):
     serializer_class = NestedRecipeSerializer
     queryset = Recipe.objects.all()
 
+class TagList(generics.ListCreateAPIView):
+    # permission_classes = (permissions.IsAuthenticated,)
+    model = Tag
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
+
+class TagDetail(generics.RetrieveUpdateDestroyAPIView):
+    # permission_classes = (permissions.IsAuthenticated,)
+    model = Tag
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
+
 class CreateRecipe(generics.CreateAPIView):
     # permission_classes = (permissions.IsAuthenticated,)
     model = Recipe

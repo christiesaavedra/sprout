@@ -30,6 +30,12 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
+STATIC_URL = '/static/'
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = os.path.join(PROJECT_PATH, '..', "apps/public/media")
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (

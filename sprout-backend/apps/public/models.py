@@ -48,13 +48,20 @@ class Ingredient(models.Model):
     def __unicode__(self):
         return self.name
 
+class Tag(models.Model):
+    name = models.TextField(unique=True)
+
+    def __unicode__(self):
+        return self.name
+
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
-#    author = models.CharField(max_length=50)
+    author = models.CharField(max_length=50)
     description = models.CharField(max_length=2000)
-#   image =
+    photo = models.ImageField(upload_to='photos', blank=True)
     ingredients = models.ManyToManyField('Ingredient')
     cook_time = models.CharField(max_length=50)
+    tags = models.ManyToManyField('Tag')
 
     COOK_METHODS = (
         ('bake', 'Bake in the Oven'),
@@ -69,9 +76,13 @@ class Recipe(models.Model):
         return self.name
 
 
+
 # class Measurement(models.Model):
-#     name = models.CharField(max_length=50)
+#     measurement_type = models.ForeignKey(MeasurementType)
 #     amount = models.CharField(max_length=50)
+#     recipe = models.ForeignKey(Recipe)
+#     ingredient = models.ForeignKey(Ingredient)
+#
 #
 #     def __unicode__(self):
 #         return self.name

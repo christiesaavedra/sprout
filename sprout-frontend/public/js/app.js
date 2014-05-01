@@ -13,14 +13,14 @@ var sproutApp = angular.module('sproutApp', [
 
     .config(['$routeProvider', 'RestangularProvider', function($routeProvider, RestangularProvider) {
         $routeProvider
-//            .when('/home', {
-//                templateUrl: 'partials/home.tpl.html',
-//                controller: 'HomeController',
-//                title: 'Home Page'
-//            })
+            .when('/home', {
+                templateUrl: 'partials/home.tpl.html',
+                controller: 'HomeController',
+                title: 'Home Page'
+            })
             .when('/recipes', {
                 templateUrl: 'partials/recipes.tpl.html',
-                controller: 'RecipeController',
+                controller: 'RecipesController',
                 title: 'Recipes'
 
             })
