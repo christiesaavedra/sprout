@@ -1,0 +1,26 @@
+<div class="container-fluid">
+
+<p>{{ recipe.name }}</p>
+
+<p>
+
+    <label>Description:</label>
+    {{ recipe.description }}
+</p>
+
+
+    <label>Ingredients:</label>
+<p ng-repeat="ingredient in recipe.ingredients">
+    {{ ingredient.name }}</p>
+
+
+<p>
+    <label>Cook Time:</label>
+    {{ recipe.cook_time }}
+</p>
+</div>
+
+{{ recipe }}
+<br>
+<br>
+<p>{{ status }}</p>
