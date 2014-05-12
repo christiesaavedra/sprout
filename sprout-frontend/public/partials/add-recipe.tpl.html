@@ -3,17 +3,28 @@
     <br>
     <div class="col-md-3">
     <h3><strong>Add A New Recipe</strong></h3>
-        </br>
+    </br>
     <label>Recipe Name: </label>
-    <input class="form-control"  type="text" ng-model="recipe.name" placeholder="Recipe Name">
+    <input class="form-control"
+           type="text"
+           placeholder="Recipe Name" ng-model="searchRecipe.name"
+           typeahead="recipe.name for recipe in recipes | filter:$viewValue | limitTo:8">
     <br>
     <br>
      <label>Author: </label>
-    <input class="form-control" type="text" ng-model="recipe.author" placeholder="Who created or showed you this recipe?">
+    <input class="form-control"
+           type="text"
+           placeholder="Who created or showed you this recipe?"
+           ng-model="searchRecipe.author"
+           typeahead="recipe.author for recipe in recipes | filter:$viewValue | limitTo:8">
     <br>
     <br>
     <label> Simple Description: </label>
-    <input class="form-control"  type="text" ng-model="recipe.description" placeholder="1 line description of this recipe.">
+    <input class="form-control"
+           type="text"
+           placeholder="1 line description of recipe"
+           ng-model="searchRecipe.description"
+           typeahead="recipe.description for recipe in recipes | filter:$viewValue | limitTo:8">
     <!--<input type="text" ng-model="recipe.description">-->
     <br>
     <br>
@@ -21,22 +32,57 @@
     <br>
     <br>
     <label> Time: </label>
-    <input class="form-control"  type="text" ng-model="recipe.cook_time" placeholder="Total amount of time to prepare and cook this recipe?">
+    <input class="form-control"
+           type="text"
+           ng-model="recipe.cook_time"
+           placeholder="Total amount of time to prepare and cook this recipe?">
     <br>
     <br>
 
-    <span>
-        <input class="form-control"  type="text" ng-model="tagName" placeholder="Enter a Tag">
+
+<!--          <label>Tags</label>
+          <form ng-submit="saveTag(tagName)">
+        <input class="form-control form-inline"
+               type="text"
+               placeholder="Enter an Tag"
+               ng-model="searchTag.name"
+               typeahead="tag.name for tag in tags | filter:$viewValue | limitTo:8">
         <button ng-click="saveTag(tagName)">Add Tag</button>
-    </span>
+         </form>
+
       <span ng-repeat="tag in recipe.tags"
-           class="label label-margin"
+           class="btn btn-sm btn-info label"
+           ng-click="removeTag(tag)"
            ng-class-even="'label-info'"
            ng-class-odd="'label-danger'"
-           ng-bind="tag.name"></span>
-    <br/>
-    <br/>
-</div>
+           ng-bind="tag.name"></span>  -->
+
+                <label>Tags</label>
+                <form ng-submit="saveTag(tagName)">
+                    <input id="tag-input"
+                       class="form-control form-inline"
+                       type="text"
+                       ng-model="tagName"
+                       typeahead="tag.name for tag in tags | filter:$viewValue | limitTo:8"
+                       placeholder="Enter a Tag">
+                </form>
+                <div>
+                    <button ng-repeat="tag in recipe.tags"
+                            ng-bind="tag.name"
+                            ng-click="removeTag(tag)"
+                            class="btn btn-sm btn-info label"
+                            ng-class-even="'label-info'"
+                            ng-class-odd="'label-success'">
+                    </button>
+                </div>
+</br>
+                <label>&nbsp;</label>
+                <button ng-click="saveTag(tagName)"
+                        class="add-tag-button btn btn-sm btn-info">Add Tag
+                </button>
+         </div>
+
+
     <!--<select multiple
             ng-model = "recipe.ingredients"
             ng-options="ingredient.id as ingredient.name for ingredient in ingredients"></select>-->
@@ -48,13 +94,7 @@
     <label>Measurement:</label>
     <input class="form-control" type="text" placeholder="Enter a Measurement">
     <label> Ingredient:</label>
-    <input class="form-control" type="text" placeholder="Enter an Ingredient" ng-model="searchIngredient.name">
-    <p ng-repeat="ingredient in ingredients | filter:searchIngredient">
-        <a href="javascript:void(0);"
-           ng-click="addIngredient(ingredient.id)"
-           ng-bind="ingredient.name"
-           ng-hide="!ingredient.active"></a>
-    </p>
+    <input class="form-control" type="text" placeholder="Enter an Ingredient" ng-model="searchIngredient.name" typeahead="ingredient.name for ingredient in ingredients | filter:$viewValue | limitTo:8">
     <br>
     <br>
     </br>

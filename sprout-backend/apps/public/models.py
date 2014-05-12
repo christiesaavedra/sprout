@@ -43,7 +43,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=50)
-    glycemic_index = models.IntegerField()
+    glycemic_index = models.DecimalField(max_digits=5, decimal_places=1)
 
     def __unicode__(self):
         return self.name
@@ -61,8 +61,8 @@ class Recipe(models.Model):
     photo = models.ImageField(upload_to='photos', blank=True)
     ingredients = models.ManyToManyField('Ingredient')
     cook_time = models.CharField(max_length=50)
-    tags = models.ManyToManyField('Tag')
-
+    tags = models.ManyToManyField('Tag', blank=True, null=True)
+    favorited_by = models.ManyToManyField(User, blank=True, null=True)
     COOK_METHODS = (
         ('bake', 'Bake in the Oven'),
         ('microwave', 'Microwave'),

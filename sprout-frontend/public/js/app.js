@@ -31,16 +31,22 @@ var sproutApp = angular.module('sproutApp', [
                 title: 'Recipe Details'
             })
 
-               .when('/edit-recipe/:recipeId', {
+            .when('/edit-recipe/:recipeId', {
                 templateUrl: 'partials/edit-recipe.tpl.html',
                 controller: 'EditRecipeController',
                 title: 'Edit Recipe'
             })
 
-                .when('/add-recipe', {
+            .when('/add-recipe', {
                 templateUrl: 'partials/add-recipe.tpl.html',
                 controller: 'AddRecipeController',
                 title: 'Add Recipe'
+            })
+
+             .when('/favorites', {
+                templateUrl: 'partials/favorites.tpl.html',
+                controller: 'FavoritesController',
+                title: 'Favorites'
             })
 
             .otherwise({

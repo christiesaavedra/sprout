@@ -26,6 +26,8 @@ DATABASES = {
 # In a Windows environment this must be set to your system time zone.
 TIME_ZONE = 'America/Denver'
 
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings.dev")
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 
 # Example: "/var/www/example.com/media/"

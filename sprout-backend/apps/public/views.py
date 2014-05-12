@@ -9,6 +9,8 @@ from rest_framework import status
 
 from rest_framework.authtoken.views import ObtainAuthToken
 
+from rest_framework.authentication import TokenAuthentication
+
 from rest_framework import generics
 from rest_framework import permissions
 
@@ -16,6 +18,12 @@ from django.contrib.auth.models import User
 from .models import *
 from .serializers import *
 
+@api_view(('GET',))
+def obtain_user_from_token(r, token):
+    auth = TokenAuthentication()
+    response = auth.authenticate_credentials(token)
+    user_id = response[0].id
+    return Response(user_id)
 
 class RecipeList(generics.ListCreateAPIView):
     # permission_classes = (permissions.IsAuthenticated,)
