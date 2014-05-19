@@ -193,6 +193,7 @@ angular.module('sproutApp.controllers', [])
         var createTag = function (tagName) {
 
             var tag = {name: tagName};
+            console.log('Blah' + JSON.stringify(tag))
             Restangular.all('tags').customPOST(tag).then(function (tag) {
                 tag.justAdded = true;
                 $scope.tags.push(tag);
@@ -202,6 +203,7 @@ angular.module('sproutApp.controllers', [])
 
         $scope.saveTag = function (tagName) {
             var tag = getTagFromName(tagName);
+            console.log(tag)
             if (tag == null) {
                 createTag(tagName);
             }

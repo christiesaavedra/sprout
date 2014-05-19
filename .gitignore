@@ -56,3 +56,5 @@ docs/_build/
 .idea
 
 staticfiles
+
+.DS_Store

@@ -62,14 +62,10 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField('Ingredient')
     cook_time = models.CharField(max_length=50)
     tags = models.ManyToManyField('Tag', blank=True, null=True)
+    detailed_directions = models.CharField(max_length=10000)
+    note = models.CharField(max_length=5000,)
     favorited_by = models.ManyToManyField(User, blank=True, null=True)
-    COOK_METHODS = (
-        ('bake', 'Bake in the Oven'),
-        ('microwave', 'Microwave'),
-        ('fry', 'Frying Pan'),
-        ('dutch_oven', 'Dutch Oven'),
-    )
-    cook_method = models.CharField(max_length=50, choices=COOK_METHODS)
+
 
 
     def __unicode__(self):

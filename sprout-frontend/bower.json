@@ -8,7 +8,9 @@
     "angular-route": "latest",
     "underscore": "latest",
     "restangular": "latest",
-    "bootstrap": "latest"
+    "bootstrap": "latest",
+    "ui-bootstrap": "latest",
+    "ui-bootstrap-tpls": "latest"
   },
   "resolutions": {
     "angular": "1.2.16"
