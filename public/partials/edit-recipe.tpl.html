@@ -1,0 +1,90 @@
+
+<div class="container-fluid">
+
+
+
+<label>Recipe Name: </label>
+    <input class="form-control"  type="text" ng-model="recipe.name" placeholder="Recipe Name">
+    <br>
+    <br>
+     <label>Author: </label>
+    <input class="form-control" type="text" ng-model="recipe.name" placeholder="Who created or showed you this recipe?">
+    <br>
+    <br>
+    <label> Simple Description: </label>
+    <input class="form-control"  type="text" ng-model="recipe.description" placeholder="1 line description of this recipe.">
+    <!--<input type="text" ng-model="recipe.description">-->
+    <br>
+    <br>
+    <label> UPLOAD IMAGE:...... </label>
+    <br>
+    <br>
+    <label> Time: </label>
+    <input class="form-control"  type="text" ng-model="recipe.cook_time" placeholder="Total amount of time to prepare and cook this recipe?">
+    <br>
+    <br>
+
+    <span>
+        <input class="form-control"  type="text" ng-model="tagName" placeholder="Enter a Tag">
+        <button ng-click="saveTag(tagName)">Add Tag</button>
+    </span>
+      <span ng-repeat="tag in recipe.tags"
+           class="label label-margin"
+           ng-class-even="'label-info'"
+           ng-class-odd="'label-danger'"
+           ng-bind="tag.name"></span>
+    <br/>
+    <br/>
+</div>
+    <!--<select multiple
+            ng-model = "recipe.ingredients"
+            ng-options="ingredient.id as ingredient.name for ingredient in ingredients"></select>-->
+    <div class="col-md-4">
+    <h3><strong>Ingredient List</strong></h3>
+    </br>
+    <label>Amount:</label>
+    <input class="form-control" type="text" placeholder="Enter an Amount">
+    <label>Measurement:</label>
+    <input class="form-control" type="text" placeholder="Enter a Measurement">
+    <label> Ingredient:</label>
+    <input class="form-control" type="text" placeholder="Enter an Ingredient" ng-model="searchIngredient.name">
+    <p ng-repeat="ingredient in ingredients | filter:searchIngredient">
+        <a href="javascript:void(0);"
+           ng-click="addIngredient(ingredient.id)"
+           ng-bind="ingredient.name"
+           ng-hide="!ingredient.active"></a>
+    </p>
+    <br>
+    <br>
+    </br>
+    </br>
+
+    <h3><strong>Selected Ingredient List</strong></h3>
+   <ol>
+       <li ng-repeat="ingredientId in recipe.ingredients">
+        <p ng-bind="getIngredientName(ingredientId)">
+        </p>
+        <i class="glyphicon glyphicon-remove-circle"></i>
+       </li>
+   </ol>
+
+    <br>
+    <br>
+        </div>
+<div class="col-md-5">
+      <h3><strong>Directions</strong></h3>
+      <label> Detailed Recipe Directions </label>
+    <input class="form-control"  placeholder="Enter Detailed Recipe Directions"ng-model="recipe.description">
+
+<br>
+<br>
+<button class="btn btn-danger btn btn-xs fa fa-trash-o" ng-click="deleteRecipe()">Delete Recipe</button>
+<button class="btn btn-info btn btn-xs fa fa-check-circle" ng-click="editRecipe()">Update Recipe</button>
+</div>
+
+<br>
+<br>
+{{recipe}}
+<br>
+<br>
+<p>{{status}}</p>

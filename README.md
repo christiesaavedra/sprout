@@ -35,3 +35,4 @@ For Windows:
 8. run terminal command `bower install`
 	-- if your terminal complains about bower not being installed, run `npm install -g bower` and then run `bower install`
 9. create a Node.js run configuration in PyCharm
+
